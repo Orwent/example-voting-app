@@ -3,25 +3,30 @@ name: Deploy Docker Image
 on:
   push:
     branches:
-      - main
+      - main  # Déclenche le déploiement sur chaque push vers la branche main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Log in to Docker Hub
-      uses: docker/login-action@v2
-      with:
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Deploy to Server
-      env:
-        DOCKER_HOST: ${{ secrets.DOCKER_HOST }}
-        DOCKER_CERT_PATH: ${{ secrets.DOCKER_CERT_PATH }}
-      run: |
-        docker pull votre_nom_utilisateur/example-voting-app:latest
-        docker stop example-voting-app || true
-        docker rm example-voting-app || true
-        docker run -d --name example-voting-app -p 80:80 votre_nom_utilisateur/example-voting-app:latest
+      - name: Pull Docker image from GHCR
+        run: |
+          docker pull ghcr.io/orwent/2_image_vote:latest
+
+      - name: Stop and remove existing container
+        run: |
+          docker stop example-voting-app || true
+          docker rm example-voting-app || true
+
+      - name: Run new Docker container
+        run: |
+          docker run -d --name example-voting-app -p 80:80 ghcr.io/orwent/1_image_vote:latest
+
