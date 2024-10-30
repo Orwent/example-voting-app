@@ -22,8 +22,8 @@ jobs:
 
       - name: Build and tag Docker image
         run: |
-          docker build -t ghcr.io/orwent/1_image_vote:latest ./vote
+          docker build -t ghcr.io/orwent/2_image_vote:latest ./vote
 
       - name: Push Docker image to GitHub Container Registry
         run: |
-          docker push ghcr.io/orwent/1_image_vote:latest
+          docker push ghcr.io/orwent/2_image_vote:latest
