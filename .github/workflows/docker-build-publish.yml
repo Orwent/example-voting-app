@@ -1,14 +1,12 @@
-# .github/workflows/docker-build-publish.yml
-
 name: Build and Publish Docker Image to GHCR
 
 on:
   push:
     branches:
-      - main  # Exécuter uniquement lorsque des commits sont poussés sur la branche main
+      - main
 
 jobs:
-  build:
+  build-and-publish:
     runs-on: ubuntu-latest
 
     steps:
@@ -24,8 +22,7 @@ jobs:
 
       - name: Build and tag Docker image
         run: |
-          docker build -t  1_image_vote ./home/db_deploy_guillaume/example-voting-app/vote
-          docker tag ghcr.io/orwent/1_image_vote:latest ghcr.io/orwent/1_image_vote:latest
+          docker build -t ghcr.io/orwent/1_image_vote:latest ./vote
 
       - name: Push Docker image to GitHub Container Registry
         run: |
