@@ -24,7 +24,7 @@ jobs:
 
       - name: Build and tag Docker image
         run: |
-          docker build -t ghcr.io/orwent/1_image_vote:latest /home/db_deploy_guillaume/example-voting-app/vote
+          docker build -t  1_image_vote /home/db_deploy_guillaume/example-voting-app/vote
           docker tag ghcr.io/orwent/1_image_vote:latest ghcr.io/orwent/1_image_vote:latest
 
       - name: Push Docker image to GitHub Container Registry
