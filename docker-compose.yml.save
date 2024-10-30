@@ -4,7 +4,7 @@
 
 services:
   vote:
-    image: ghcr.io/orwent/1_image_vote:latest  # Utilisation de votre image
+    image: ghcr.io/orwent/1_image_vote:latest
     depends_on:
       redis:
         condition: service_healthy
