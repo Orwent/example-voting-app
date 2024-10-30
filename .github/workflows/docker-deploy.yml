@@ -19,7 +19,7 @@ jobs:
 
       - name: Pull Docker image from GHCR
         run: |
-          docker pull ghcr.io/orwent/2_image_vote:latest
+          docker pull ghcr.io/orwent/1_image_vote:latest
 
       - name: Stop and remove existing container
         run: |
