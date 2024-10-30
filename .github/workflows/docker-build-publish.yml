@@ -19,8 +19,8 @@ jobs:
         uses: docker/login-action@v2
         with:
           registry: ghcr.io
-          username: orwent
-          password: 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
+          username: ${{ github.actor }}
+          #password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and tag Docker image
         run: |
