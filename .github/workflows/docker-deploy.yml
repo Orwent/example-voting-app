@@ -3,7 +3,7 @@ name: Deploy Docker Image
 on:
   push:
     branches:
-      - main  # Déclenche le déploiement sur chaque push vers la branche main
+      - main
 
 jobs:
   deploy:
@@ -28,5 +28,5 @@ jobs:
 
       - name: Run new Docker container
         run: |
-         # docker run -d --name example-voting-app -p 80:80 ghcr.io/orwent/1_image_vote:latest
-           docker compose up -d
+           docker compose -d --name example-voting-app -p 80:80 ghcr.io/orwent/1_image_vote:latest
+           
