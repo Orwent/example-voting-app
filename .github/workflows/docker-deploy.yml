@@ -30,7 +30,7 @@ jobs:
 
     - name: Pull and Deploy with Docker Compose
       run: |
-        ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} "
+        ssh -o StrictHostKeyChecking=no "
           cd example-voting-app && \
           docker-compose pull && \
           docker-compose up -d
