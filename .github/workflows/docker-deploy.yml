@@ -1,5 +1,5 @@
 name: Deploy to Server
-
+#
 on:
   workflow_run:
     workflows: ["Build and Publish Docker Image to GHCR"]
