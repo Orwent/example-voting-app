@@ -11,18 +11,16 @@ jobs:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
 
     steps:
-      - name: Install SSH key
-        uses: webfactory/ssh-agent@v0.5.3
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+    - name: Install SSH key
+      uses: webfactory/ssh-agent@v0.5.3
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+        ssh-known-hosts: ${{ secrets.SERVER_IP }}
 
-      - name: Pull and Deploy with Docker Compose
-        env:
-          SERVER_USER: ${{ secrets.SERVER_USER }}
-          SERVER_IP: ${{ secrets.SERVER_IP }}
-        run: |
-          ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "
-            cd example-voting-app && \
-            docker-compose pull && \
-            docker-compose up -d
+    - name: Pull and Deploy with Docker Compose
+      run: |
+        ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} "
+          cd example-voting-app && \
+          docker-compose pull && \
+          docker-compose up -d
           "
