@@ -2,7 +2,7 @@ name: Deploy to Server
 
 on:
   workflow_run:
-    workflows: ["Create and publish a Docker image"]
+    workflows: ["Build and Publish Docker Image to GHCR"]
     types: [completed]
 
 jobs:
