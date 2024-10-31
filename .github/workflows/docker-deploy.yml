@@ -28,5 +28,5 @@ jobs:
 
       - name: Run new Docker container
         run: |
-           docker compose up -d --name example-voting-app -p 80:80 ghcr.io/orwent/1_image_vote:latest
+           docker compose up --name example-voting-app -p 80:80 ghcr.io/orwent/1_image_vote:latest
            
